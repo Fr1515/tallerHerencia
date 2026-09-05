@@ -16,7 +16,7 @@ namespace backend
         public double B
         {
             get { return b; }
-            set { b = value; }
+            set { b = ValidateB(value); }
         }
 
         public override double GetArea()
