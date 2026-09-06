@@ -4,42 +4,41 @@ using System.Text;
 
 namespace backend
 {
-   
-    
-        public class Circle : GeometricFigure
+
+
+    public class Circle : GeometricFigure
+    {
+        private double r;
+
+        public double R
         {
-            private double r; 
+            get => r;
+            set => r = ValidateR(value);
+        }
 
-            public double R
-            {
-                get => r;
-                set => r = ValidateR(value); 
-            }
+        public Circle(string name, double r)
+        {
+            Name = name;
+            R = r;
+        }
 
-            public Circle(string name, double r)
-            {
-                Name = name;
-                R = r; 
-            }
+        public override double GetArea()
+        {
+            return Math.PI * R * R;
+        }
 
-            public override double GetArea()
-            {
-                return Math.PI * R * R;
-            }
+        public override double GetPerimeter()
+        {
+            return 2 * Math.PI * R;
+        }
 
-            public override double GetPerimeter()
+        private double ValidateR(double radius)
+        {
+            if (radius <= 0)
             {
-                return 2 * Math.PI * R;
+                throw new ArgumentException($"The radius: {r} is not valid.");
             }
-
-            private double ValidateR(double radius)
-            {
-                if (radius <= 0)
-                {
-                    throw new ArgumentException($"The radius: {r} is not valid.");
-                }
-                return radius; 
-            }
+            return radius;
         }
 
 
@@ -47,3 +46,4 @@ namespace backend
 
 
     }
+}
